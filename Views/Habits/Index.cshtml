@@ -1,0 +1,52 @@
+@model IEnumerable<HabitTracker.Web.Models.Habit>
+
+@{
+    ViewData["Title"] = "My Habits";
+}
+
+<div class="container mt-4">
+    <h2>My Habits</h2>
+
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New Habit</a>
+    </p>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Current Streak</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var habit in Model)
+            {
+                <tr>
+                    <td>@habit.Name</td>
+                    <td>@habit.Description</td>
+                    <td>
+                        <span class="badge bg-success">@habit.CurrentStreak days</span>
+                    </td>
+                    <td>
+                        <form asp-action="Track" method="post" style="display:inline;">
+                            <input type="hidden" name="habitId" value="@habit.Id" />
+                            <button type="submit" class="btn btn-sm btn-success">Mark Done Today</button>
+                        </form>
+                        <a asp-action="Progress" asp-route-id="@habit.Id" class="btn btn-sm btn-info">View Progress</a>
+                        <a asp-action="Edit" asp-route-id="@habit.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@habit.Id" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No habits yet. Start by creating your first habit!
+        </div>
+    }
+</div>

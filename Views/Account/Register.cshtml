@@ -1,0 +1,161 @@
+﻿@model HabitTracker.Web.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!-- Elegant Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        background: linear-gradient(to right, #fce4ec, #f8bbd0);
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .card {
+        background-color: #fff7fa;
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 6px 16px rgba(255, 182, 193, 0.3);
+        transition: transform 0.2s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+    .card-title {
+        font-family: 'Playfair Display', serif;
+        color: #b30059;
+        font-weight: 700;
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+
+    .form-label {
+        color: #a12c5e;
+        font-weight: 500;
+    }
+
+    .form-control {
+        border-radius: 12px;
+        border: 1px solid #f8bbd0;
+        background-color: #fff;
+        transition: all 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #ec407a;
+            box-shadow: 0 0 6px #f48fb1;
+        }
+
+    .btn-primary {
+        background-color: #ec407a;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: 0.3s ease;
+        font-family: 'Poppins', sans-serif;
+    }
+
+        .btn-primary:hover {
+            background-color: #c2185b;
+            transform: scale(1.04);
+        }
+
+    .alert-info {
+        background-color: #fde4ec;
+        color: #880e4f;
+        border: none;
+        border-radius: 10px;
+        font-size: 0.95rem;
+    }
+
+    ul {
+        margin-bottom: 0;
+    }
+
+    .text-danger {
+        color: #e91e63 !important;
+    }
+
+    a {
+        color: #ad1457;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+
+        a:hover {
+            color: #c2185b;
+            text-decoration: underline;
+        }
+
+    .register-container {
+        margin-top: 5%;
+    }
+</style>
+
+<div class="container register-container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-5">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">🌷 Create an Account</h2>
+
+                    <form asp-action="Register" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="DisplayName" class="form-label"></label>
+                            <input asp-for="DisplayName" class="form-control" />
+                            <span asp-validation-for="DisplayName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label"></label>
+                            <input asp-for="Password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ConfirmPassword" class="form-label"></label>
+                            <input asp-for="ConfirmPassword" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+                        <div class="alert alert-info mt-3">
+                            <strong>🌸 Password Requirements:</strong>
+                            <ul>
+                                <li>At least 2 uppercase letters</li>
+                                <li>At least 3 digits</li>
+                                <li>At least 3 symbols</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-3">
+                            <button type="submit" class="btn btn-primary">Register 💖</button>
+                        </div>
+                    </form>
+
+                    <div class="mt-4 text-center">
+                        <p>Already have an account? <a asp-action="Login">Login here 🌸</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

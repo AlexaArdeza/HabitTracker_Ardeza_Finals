@@ -1,0 +1,150 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Elegant Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        background: linear-gradient(to right, #fce4ec, #f8bbd0);
+        font-family: 'Poppins', sans-serif;
+        color: #4a4a4a;
+    }
+
+    h1.display-3 {
+        font-family: 'Playfair Display', serif;
+        color: #b30059;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .lead {
+        font-size: 1.2rem;
+        color: #7b1f52;
+        margin-top: 10px;
+    }
+
+    .text-muted {
+        color: #a94a6b !important;
+        font-style: italic;
+    }
+
+    .btn-primary {
+        background-color: #ec407a;
+        border: none;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: 0.3s;
+        padding: 10px 25px;
+    }
+
+        .btn-primary:hover {
+            background-color: #c2185b;
+            transform: scale(1.05);
+        }
+
+    .btn-outline-secondary {
+        border: 2px solid #ec407a;
+        color: #ec407a;
+        border-radius: 12px;
+        transition: 0.3s;
+        font-weight: 500;
+        padding: 10px 25px;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #ec407a;
+            color: white;
+            transform: scale(1.05);
+        }
+
+    h3 {
+        font-family: 'Playfair Display', serif;
+        color: #ad1457;
+        margin-top: 50px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .card {
+        background-color: #fff7fa;
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 6px 16px rgba(255, 182, 193, 0.35);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(255, 182, 193, 0.45);
+        }
+
+    .card-title {
+        color: #c2185b;
+        font-weight: 600;
+        font-size: 1.3rem;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .card-text {
+        color: #6d4c57;
+        font-size: 0.95rem;
+    }
+
+    .text-center {
+        padding-bottom: 60px;
+    }
+</style>
+
+<div class="text-center mt-5">
+    <h1 class="display-3">Welcome to Habit Tracker</h1>
+    <p class="lead">Track your daily habits and build consistent streaks with style and simplicity.</p>
+    <p class="text-muted">A school project by <strong>Alexa Mei Ardeza</strong></p>
+
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <div class="mt-4">
+            <a asp-controller="Habits" asp-action="Index" class="btn btn-primary btn-lg">Go to My Habits</a>
+        </div>
+    }
+    else
+    {
+        <div class="mt-4">
+            <a asp-controller="Account" asp-action="Register" class="btn btn-primary btn-lg me-2">Get Started</a>
+            <a asp-controller="Account" asp-action="Login" class="btn btn-outline-secondary btn-lg">Login</a>
+        </div>
+    }
+
+    <div class="mt-5">
+        <h3>Features</h3>
+        <div class="row mt-4">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Track Habits</h5>
+                        <p class="card-text">Create and manage your daily routines such as exercise, reading, or journaling with ease.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Build Streaks</h5>
+                        <p class="card-text">Stay motivated by seeing your streaks grow as you maintain your habits each day.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 p-3">
+                    <div class="card-body">
+                        <h5 class="card-title">View Progress</h5>
+                        <p class="card-text">Visualize your achievements with clear, elegant charts showing your 30-day progress.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
