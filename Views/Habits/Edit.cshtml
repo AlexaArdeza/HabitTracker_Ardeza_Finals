@@ -4,36 +4,109 @@
     ViewData["Title"] = "Edit Habit";
 }
 
-<div class="container mt-4">
-    <h2>Edit Habit</h2>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f8f9fc;
+        color: #333;
+    }
 
-    <form asp-action="Edit" method="post">
-        <input type="hidden" asp-for="Id" />
-        <input type="hidden" asp-for="ApplicationUserId" />
-        <input type="hidden" asp-for="CreatedAt" />
-        <input type="hidden" asp-for="CurrentStreak" />
-        
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    .card {
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        background-color: #fff;
+        padding: 30px;
+    }
 
-        <div class="mb-3">
-            <label asp-for="Name" class="form-label"></label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
-        </div>
+    h2 {
+        font-weight: 600;
+        color: #5b4b8a;
+        text-align: center;
+        margin-bottom: 25px;
+    }
 
-        <div class="mb-3">
-            <label asp-for="Description" class="form-label"></label>
-            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
-            <span asp-validation-for="Description" class="text-danger"></span>
-        </div>
+    .form-label {
+        font-weight: 500;
+        color: #4a4a4a;
+    }
 
-        <div class="mb-3">
-            <button type="submit" class="btn btn-primary">Save</button>
-            <a asp-action="Index" class="btn btn-secondary">Cancel</a>
-        </div>
-    </form>
+    .form-control {
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        transition: all 0.3s ease;
+    }
+
+        .form-control:focus {
+            border-color: #d6b8ff;
+            box-shadow: 0 0 6px rgba(214, 184, 255, 0.6);
+        }
+
+    .btn-primary {
+        background-color: #b495ff;
+        border-color: #b495ff;
+        border-radius: 12px;
+        font-weight: 500;
+        padding: 8px 24px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-primary:hover {
+            background-color: #9c7df5;
+            border-color: #9c7df5;
+        }
+
+    .btn-secondary {
+        border-radius: 12px;
+        font-weight: 500;
+        padding: 8px 24px;
+        transition: all 0.3s ease;
+    }
+
+        .btn-secondary:hover {
+            background-color: #d6d6d6;
+        }
+
+    .container {
+        max-width: 650px;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="card">
+        <h2>Edit Habit</h2>
+
+        <form asp-action="Edit" method="post">
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="ApplicationUserId" />
+            <input type="hidden" asp-for="CreatedAt" />
+            <input type="hidden" asp-for="CurrentStreak" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label"></label>
+                <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
